@@ -1,15 +1,11 @@
 #include "window.h"
 
-Window::Window(TextureBase& texture_base) :
-    sizes(Size(800,600), Size(16,16)), view((sf::FloatRect(0.f, 0.f, 800.f, 600.f))),
-    window(sf::VideoMode(sizes.getWindowsSize().width, sizes.getWindowsSize().height, 32), "Peacful Wizard", sf::Style::Fullscreen),
-    textures(texture_base),
-    map(Map(sizes, textures)) {
+Window::Window() :
+    sizes(Size(800,600), Size(16,16)), view((sf::FloatRect(0.f, 0.f, 800.f, 600.f))) {
+        window.create(sf::VideoMode(sizes.getWindowsSize().width, sizes.getWindowsSize().height, 32), "Peacful Wizard", sf::Style::Fullscreen);
         window.setMouseCursorVisible(false);
         window.setFramerateLimit(60);
         window.setView(view);
-
-        map.create_map();
 }
 
 SizeProportions& Window::getSizes() {
@@ -38,16 +34,16 @@ void Window::checkEvents() {
     }
 }
 
-void Window::draw() {
+void Window::draw(Map& map) {
     window.clear();
-    map.draw(window);
+    map.draw();
     window.display();
 }
 
-void Window::work() {
+void Window::work(Map& map) {
     while (window.isOpen())
     {
         checkEvents();
-        draw();
+        draw(map);
     }
 }

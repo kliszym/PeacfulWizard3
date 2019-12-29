@@ -8,19 +8,16 @@
 
 class Window {
 public:
-    TextureBase& textures;
-
     sf::View view;
     sf::RenderWindow window;
     SizeProportions sizes;
-    Map map;
 
-    Window(TextureBase& texture_base);
+    Window();
     SizeProportions& getSizes();
     sf::RenderWindow& getWindow();
     void checkEvents();
-    void draw();
-    void work();
+    void draw(Map& map);
+    void work(Map& map);
 };
 
 #endif

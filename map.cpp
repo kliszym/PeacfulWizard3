@@ -1,7 +1,7 @@
 #include "map.h"
 
-Map::Map(SizeProportions& size_proportions, TextureBase& textures):
-	sizes(size_proportions), texture_base(textures) {
+Map::Map(sf::RenderWindow& render_window, SizeProportions& size_proportions, TextureBase& textures):
+	window(render_window), sizes(size_proportions), texture_base(textures) {
 	map.resize(sizes.getMapSize().height);
 	for (auto& map_row : map) {
 		map_row.resize(sizes.getMapSize().width);
@@ -25,7 +25,7 @@ void Map::load() {
 	
 }
 
-void Map::draw(sf::RenderWindow& window) {
+void Map::draw() {
 	int row = 0;
 	int col = 0;
 	for (auto& map_line : map) {

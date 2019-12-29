@@ -8,19 +8,20 @@
 
 int main()
 {
-    TextureBase texture_base;
-    Window window(texture_base);
+    Window window;
 
+    TextureBase texture_base;
     TextureLoader texture_loader(texture_base);
     texture_loader.load();
 
-//    Map map(window.getSizes(), texture_base);
-//    map.create_map();
+
+    Map map(window.getWindow(), window.getSizes(), texture_base);
+    map.create_map();
 
 //    sf::Thread events(&Window::work, &window);
 //    events.launch();
 
-    window.work();
+    window.work(map);
 
     return 0;
 }

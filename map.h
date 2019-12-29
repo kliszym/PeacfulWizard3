@@ -8,15 +8,16 @@
 
 class Map {
 public:
-	TextureBase& texture_base;
-
-	SizeProportions& sizes;
-
+	sf::RenderWindow& window;
 	std::vector<std::vector<MapFragment>> map;
 
-	Map(SizeProportions& size_proportions, TextureBase& textures);
+	TextureBase& texture_base;
+	SizeProportions& sizes;
+
+
+	Map(sf::RenderWindow& render_window, SizeProportions& size_proportions, TextureBase& textures);
 	void create_map();
-	void draw(sf::RenderWindow& window);
+	void draw();
 	void save();
 	void load();
 };
