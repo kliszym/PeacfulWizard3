@@ -26,6 +26,7 @@ void Window::checkEvents() {
                 break;
             }
         case sf::Event::Closed:
+            clearThreads();
             window.close();
             break;
         default:
@@ -46,4 +47,16 @@ void Window::work(Map& map) {
         checkEvents();
         draw(map);
     }
+}
+
+void Window::addThread(sf::Thread& thread) {
+    thread.launch();
+    threads.push_back(&thread);
+}
+
+void Window::clearThreads() {
+    for (auto& thread : threads) {
+        thread->terminate();
+    }
+    threads.clear();
 }

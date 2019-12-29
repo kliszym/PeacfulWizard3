@@ -10,6 +10,7 @@ class Window {
 public:
     sf::View view;
     sf::RenderWindow window;
+    std::vector<sf::Thread*> threads;
     SizeProportions sizes;
 
     Window();
@@ -18,6 +19,9 @@ public:
     void checkEvents();
     void draw(Map& map);
     void work(Map& map);
+
+    void addThread(sf::Thread& thread);
+    void clearThreads();
 };
 
 #endif
